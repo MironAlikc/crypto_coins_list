@@ -12,10 +12,35 @@ class CryptoCurrenciesListApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.deepOrange,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
+          textTheme: TextTheme(
+            bodyMedium: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+            labelSmall: TextStyle(
+              color: Colors.white.withOpacity(0.6),
+              fontWeight: FontWeight.w700,
+              fontSize: 14,
+            ),
+          ),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 31, 31, 31),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
+          dividerColor: Colors.white24,
+          listTileTheme: const ListTileThemeData(
+            iconColor: Colors.white,
+          ),
+          appBarTheme: const AppBarTheme(
+            elevation: 0,
+            backgroundColor: Color.fromARGB(255, 31, 31, 31),
+            titleTextStyle: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          )
+          // useMaterial3: true,
+          ),
       home: const MyHomePage(),
     );
   }
@@ -31,38 +56,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    _counter++;
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Crypto Currencies List'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: ListView.separated(
+        separatorBuilder: (context, i) => const Divider(),
+        itemCount: 10,
+        itemBuilder: (context, i) => ListTile(
+          leading: Image.asset(
+            'assets/Bitcoin_logo.png',
+            height: 30,
+            width: 30,
+          ),
+          title: Text(
+            'Bitcoin',
+            style: theme.textTheme.bodyMedium,
+          ),
+          subtitle: Text(
+            '20000\$',
+            style: theme.textTheme.labelSmall,
+          ),
+          trailing: const Icon(Icons.arrow_forward_ios),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
