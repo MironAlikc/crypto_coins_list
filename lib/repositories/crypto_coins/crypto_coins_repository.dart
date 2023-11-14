@@ -1,14 +1,10 @@
-import 'package:crypto_coins_list/repositories/crypto_coins/abstarct_coins_repository.dart';
-import 'package:crypto_coins_list/repositories/crypto_coins/models/crypto_coin.dart';
+import 'package:crypto_coins_list/repositories/crypto_coins/crypto_coins.dart';
 import 'package:dio/dio.dart';
 
 class CryptoCoinsRepository implements AbstractCoinsRepository {
-  CryptoCoinsRepository({
-    required this.dio,
-  });
-
+  CryptoCoinsRepository({required this.dio});
   final Dio dio;
-  
+
   @override
   Future<List<CryptoCoin>> getCoinsList() async {
     final response = await Dio().get(
