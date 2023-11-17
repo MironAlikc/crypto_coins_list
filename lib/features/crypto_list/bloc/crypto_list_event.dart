@@ -6,6 +6,7 @@ class LoadCryptoList extends CryptoListEvent {
   LoadCryptoList({
     this.completer,
   });
+
   final Completer? completer;
 
   @override
