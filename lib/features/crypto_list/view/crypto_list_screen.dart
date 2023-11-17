@@ -63,7 +63,10 @@ class _CryptoListScreenState extends State<CryptoListScreen> {
                   itemCount: state.coinsList.length,
                   itemBuilder: (context, i) {
                     final coin = state.coinsList[i];
-                    return CryptoCoinTile(coin: coin);
+                    return CryotoCoinTile(
+                      coin: coin,
+                    );
+                    // CryptoCoinTile(coin: coin);
                   },
                 );
               }
